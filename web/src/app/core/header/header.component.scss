@@ -1,0 +1,10 @@
+.layout-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 64px;
+    z-index: 1100;
+    background-color: rgb(182 32 32);
+    border-bottom: 1px solid transparent;
+}
