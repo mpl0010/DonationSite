@@ -5,6 +5,28 @@
     width: 100%;
     min-height: 64px;
     z-index: 1100;
-    background-color: rgb(182 32 32);
+    background-color: rgb(66, 129, 217);
     border-bottom: 1px solid transparent;
+}
+
+.layout-toolbar-content {
+    height: 4rem;
+    padding: 0 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.layout-toolbar-content .layout-toolbar-logo-container {
+    width: auto;
+}
+
+.layout-toolbar-content .layout-toolbar-logo {
+    display: inline-flex;
+}
+
+.test {
+    background-color: black;
+    height: 100%;
+    width: 50px;
 }
