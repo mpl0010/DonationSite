@@ -5,14 +5,10 @@
     width: 100%;
     min-height: 64px;
     z-index: 1100;
-    transition: background-color .5s, border-color .5s;
     border-bottom: 1px solid transparent;
 }
 
 .layout-toolbar.layout-toolbar-sticky {
-    //border-radius: 0px 0px 10px 10px;
-    //box-shadow: 5px 2px 2px #257c99;
-    //border-bottom: 1px solid #2381a0;
     background-color: #1798c3;
     backdrop-filter: blur(8px);
 }
