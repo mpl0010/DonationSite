@@ -1,56 +1,74 @@
-import { CommonModule, DOCUMENT } from '@angular/common';
-import { afterNextRender, Component, ElementRef, Inject, OnDestroy, Renderer2 } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { ToolbarModule } from 'primeng/toolbar';
+import { BehaviorSubject, distinctUntilChanged, fromEvent, map, Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-header',
     standalone: true,
-    imports: [ButtonModule, ToolbarModule, CommonModule],
+    animations: [
+        trigger('scroll', [
+            state(
+                'topPage',
+                style({
+                    backgroundColor: 'transparent'
+                }),
+            ),
+            state(
+                'scrolled',
+                style({
+                    backgroundColor: '#1798c3'
+                })
+            ),
+            transition('topPage => scrolled', [animate('0.2s')]),
+            transition('scrolled => topPage', [animate('0.2s')]),
+        ])
+    ],
+    imports: [CommonModule, ButtonModule, ToolbarModule],
     templateUrl: './header.component.html',
     styleUrl: './header.component.scss'
 })
-export class HeaderComponent implements OnDestroy {
+export class HeaderComponent implements OnInit, OnDestroy {
+    private zone;
+    private cdr;
 
-    private window: Window;
+    public subscriptions: Subscription[];
 
-    scrollListener: VoidFunction | null;
+    scrollState = new BehaviorSubject<string>('topPage');
 
-    constructor(
-        @Inject(DOCUMENT) private document: Document,
-        private el: ElementRef,
-        private renderer: Renderer2
+    constructor(zone: NgZone,
+        cdr: ChangeDetectorRef
     ) {
-        this.scrollListener = null;
-        this.window = this.document.defaultView as Window;
+        this.subscriptions = [];
+        this.zone = zone;
+        this.cdr = cdr;
 
-        afterNextRender(() => {
-            this.bindScrollListener()
-        })
+        this.zone.runOutsideAngular(() => {                     //  Run the Scroll event outside of Angular.
+            const scroll = fromEvent(window, 'scroll').pipe(
+                map(() => window.scrollY),                      //  Emit the scrollY position and compare it to the position of the top of the page.
+                distinctUntilChanged(),                         //  Only emit when the current value is different from the last.
+                map((scrollTop: number) => scrollTop > 0),      //  Compare the emitted value, emit result of comparison.
+                distinctUntilChanged(),                         //  Only emit when the current value is different from the last.
+            )
+            .subscribe((state) => this.setTopBar(state));       //  Anytime a value is emitted, perform our funciton.
+
+
+            this.subscriptions.push(scroll);                    //  Add the Subscription to the array so that it will be disposed of later.
+        });
+    }
+
+    ngOnInit(): void {
     }
 
     ngOnDestroy(): void {
-        this.unbindScrollListener();
-    }
-    
-    bindScrollListener() {
-        if (!this.scrollListener) {
-            this.scrollListener = this.renderer.listen(this.window, 'scroll', () => {
-                if (this.window.scrollY > 0) {
-                    this.el.nativeElement.children[0].classList.add('layout-toolbar-sticky');
-                }
-                else {
-                    this.el.nativeElement.children[0].classList.remove('layout-toolbar-sticky');
-                }
-            })
-        }
+        // TODO: Test this when another page exists.
+        this.subscriptions.forEach((x) => x.unsubscribe());
     }
 
-    unbindScrollListener() {
-        if (this.scrollListener) {
-            this.scrollListener();
-            this.scrollListener = null;
-        }
+    setTopBar(state: boolean) {
+        this.scrollState.next(state ? 'scrolled' : 'topPage')
+        this.cdr.detectChanges();
     }
-    
 }
