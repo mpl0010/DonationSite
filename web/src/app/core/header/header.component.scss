@@ -14,11 +14,11 @@
 }
 
 .layout-toolbar-content {
-    height: 4rem;
-    padding: 0 4rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
+    height: 4rem;
+    padding: 0 4rem;
 }
 
 .layout-toolbar-content.layout-toolbar-logo-container {
@@ -27,6 +27,17 @@
 
 .layout-toolbar-content.layout-toolbar-logo {
     display: inline-flex;
+}
+
+.feature-buttons-container {
+    display: inherit;
+    align-items: center;
+    background-color: burlywood;
+    height: 100%;
+}
+
+.header-button {
+    background-color: brown;
 }
 
 .test {
