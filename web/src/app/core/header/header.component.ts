@@ -10,18 +10,12 @@ import { BehaviorSubject, distinctUntilChanged, fromEvent, map, Subscription } f
     standalone: true,
     animations: [
         trigger('scroll', [
-            state(
-                'topPage',
-                style({
-                    backgroundColor: 'transparent'
-                }),
-            ),
-            state(
-                'scrolled',
-                style({
-                    backgroundColor: '#1798c3'
-                })
-            ),
+            state('topPage', style({
+                backgroundColor: 'transparent'
+            })),
+            state('scrolled', style({
+                backgroundColor: '#1798c3'
+            })),
             transition('topPage => scrolled', [animate('0.2s')]),
             transition('scrolled => topPage', [animate('0.2s')]),
         ])
