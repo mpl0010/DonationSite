@@ -1,6 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { ToolbarModule } from 'primeng/toolbar';
 import { BehaviorSubject, distinctUntilChanged, fromEvent, map, Subscription } from 'rxjs';
@@ -20,7 +21,7 @@ import { BehaviorSubject, distinctUntilChanged, fromEvent, map, Subscription } f
             transition('scrolled => topPage', [animate('0.2s')]),
         ])
     ],
-    imports: [CommonModule, ButtonModule, ToolbarModule],
+    imports: [CommonModule, ButtonModule, ToolbarModule, RouterLink],
     templateUrl: './header.component.html',
     styleUrl: './header.component.scss'
 })
