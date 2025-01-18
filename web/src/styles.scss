@@ -3,4 +3,12 @@ body {
     min-height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
+    background-color: rgb(233, 233, 233);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+:root {
+    --header-toolbar-height: 64px;
 }

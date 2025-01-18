@@ -1,6 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { ToolbarModule } from 'primeng/toolbar';
 import { BehaviorSubject, distinctUntilChanged, fromEvent, map, Subscription } from 'rxjs';
@@ -10,23 +11,17 @@ import { BehaviorSubject, distinctUntilChanged, fromEvent, map, Subscription } f
     standalone: true,
     animations: [
         trigger('scroll', [
-            state(
-                'topPage',
-                style({
-                    backgroundColor: 'transparent'
-                }),
-            ),
-            state(
-                'scrolled',
-                style({
-                    backgroundColor: '#1798c3'
-                })
-            ),
+            state('topPage', style({
+                backgroundColor: 'transparent'
+            })),
+            state('scrolled', style({
+                backgroundColor: '#1798c3'
+            })),
             transition('topPage => scrolled', [animate('0.2s')]),
             transition('scrolled => topPage', [animate('0.2s')]),
         ])
     ],
-    imports: [CommonModule, ButtonModule, ToolbarModule],
+    imports: [CommonModule, ButtonModule, ToolbarModule, RouterLink],
     templateUrl: './header.component.html',
     styleUrl: './header.component.scss'
 })
@@ -45,6 +40,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.zone = zone;
         this.cdr = cdr;
 
+        // TODO: Create a service that handles this. The component should not be responsible.
         this.zone.runOutsideAngular(() => {                     //  Run the Scroll event outside of Angular.
             const scroll = fromEvent(window, 'scroll').pipe(
                 map(() => window.scrollY),                      //  Emit the scrollY position and compare it to the position of the top of the page.
