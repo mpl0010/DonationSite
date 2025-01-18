@@ -40,6 +40,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.zone = zone;
         this.cdr = cdr;
 
+        // TODO: Create a service that handles this. The component should not be responsible.
         this.zone.runOutsideAngular(() => {                     //  Run the Scroll event outside of Angular.
             const scroll = fromEvent(window, 'scroll').pipe(
                 map(() => window.scrollY),                      //  Emit the scrollY position and compare it to the position of the top of the page.
