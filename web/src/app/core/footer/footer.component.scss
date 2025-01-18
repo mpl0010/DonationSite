@@ -1,0 +1,13 @@
+.layout-footer {
+    flex: 3;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    min-height: var(--footer-toolbar-height);
+    z-index: 1100;
+    border-top: 1px solid transparent;
+}
+
+div {
+    color: black;
+}
