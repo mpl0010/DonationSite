@@ -1,3 +1,16 @@
+.landing-page-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.about-us {
+    flex: 30%;
+}
+
+.daily-featured {
+    flex: 70%;
+}
+
 div {
     color: black;
 }
