@@ -3,7 +3,7 @@ import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
-import Aura from '@primeng/themes/aura'
+import { customTheme } from './themes/default-theme';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -12,7 +12,7 @@ export const appConfig: ApplicationConfig = {
         provideAnimationsAsync(),
         providePrimeNG({
             theme: {
-                preset: Aura
+                preset: customTheme
             }
         })
     ]

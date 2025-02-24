@@ -15,7 +15,7 @@ import { BehaviorSubject, distinctUntilChanged, fromEvent, map, Subscription } f
                 backgroundColor: 'transparent'
             })),
             state('scrolled', style({
-                backgroundColor: '#1798c3'
+                backgroundColor: '#F9F8F8'
             })),
             transition('topPage => scrolled', [animate('0.2s')]),
             transition('scrolled => topPage', [animate('0.2s')]),
