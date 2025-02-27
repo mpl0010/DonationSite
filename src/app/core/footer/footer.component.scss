@@ -1,6 +1,5 @@
 .layout-footer-container {
-    display: flex;
-    flex-direction: column;
+    position: relative;
     width: 100%;
     min-height: var(--footer-toolbar-height);
     background-color: #F9F8F8;
