@@ -2,7 +2,8 @@ import { definePreset, palette } from '@primeng/themes';
 import Aura from '@primeng/themes/aura';
 
 const primaryValues = palette('#2381A0');
-const secondaryValues = palette('#96B4D1')
+const secondaryValues = palette('#96B4D1');
+const tertiaryValues = palette('#F9F8F8');
 
 export const customTheme = definePreset(Aura, {
     semantic: {
@@ -32,30 +33,43 @@ export const customTheme = definePreset(Aura, {
             900: secondaryValues["900"],
             950: secondaryValues["950"]
         },
-        // TODO: Implement color theme for components that will be commonly used.
-        // components: {
-        //     button: {
-        //         colorScheme: {
-        //             light: {
-        //                 root: {
-        //                     background: '{surface.0}',
-        //                     color: '{surface.700}'
-        //                 },
-        //                 subtitle: {
-        //                     color: '{surface.500}'
-        //                 }
-        //             },
-        //             dark: {
-        //                 root: {
-        //                     background: '{surface.900}',
-        //                     color: '{surface.0}'
-        //                 },
-        //                 subtitle: {
-        //                     color: '{surface.400}'
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
+        tertiary: {
+            50: tertiaryValues["50"],
+            100: tertiaryValues["100"],
+            200: tertiaryValues["200"],
+            300: tertiaryValues["300"],
+            400: tertiaryValues["400"],
+            500: tertiaryValues["500"],
+            600: tertiaryValues["600"],
+            700: tertiaryValues["700"],
+            800: tertiaryValues["800"],
+            900: tertiaryValues["900"],
+            950: tertiaryValues["950"]
+        }
+    },
+    components: {
+        card: {
+            colorScheme: {
+                light: {
+                    root: {
+                        background: '{tertiary.500}',
+                        color: '{neutral.950}',
+                        shadow: '5px 5px 10px 0 rgba(0,0,0,0.2),0 8px 20px 0 rgba(0,0,0,0.19)'
+                    },
+                    subtitle: {
+                        color: '{neutral.500}'
+                    }
+                }
+            }
+        },
+        button: {
+            colorScheme: {
+                light: {
+                    raised: {
+                        shadow: '5px 5px 10px 0 rgba(0,0,0,0.2),0 8px 20px 0 rgba(0,0,0,0.19)'
+                    }
+                }
+            }
+        }
     }
 });
