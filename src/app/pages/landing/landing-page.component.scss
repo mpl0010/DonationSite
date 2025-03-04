@@ -1,16 +1,23 @@
 .landing-page-container {
     display: flex;
     flex-direction: row;
+    margin: 50px 0;
+    justify-content: space-around;
 }
 
 .about-us {
-    flex: 30%;
+    width: 30%;
 }
 
 .daily-featured {
-    flex: 70%;
+    width: 50%;
+}
+
+p {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
 }
 
 div {
-    color: black;
+    color: var(--p-neutral-950);
 }
