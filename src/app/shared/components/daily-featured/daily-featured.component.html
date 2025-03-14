@@ -1,0 +1,16 @@
+<div>
+    <p-card [style]="{ 'min-height': '400px', 'padding-top': '2rem' }">
+        <p-carousel [value]="hospitals" [numVisible]="1" [numScroll]="1" [circular]="true" autoplayInterval="5000">
+            <ng-template let-hospital #item>
+                <div>
+                    <div class="mb-4">
+                        <div class="relative mx-auto">
+                            <img [src]="hospital.imageLink" alt="hospital.name" class="test-img" />
+                        </div>
+                    </div>
+                    <div class="mb-4 font-medium">{{hospital.name}}</div>
+                </div>
+            </ng-template>
+        </p-carousel>
+    </p-card>
+</div>
