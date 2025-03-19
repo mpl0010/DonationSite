@@ -1,10 +1,10 @@
 body {
-    margin: 0px;
+    margin: 0;
     min-height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
-    background-color: #96B4D1;
-    font-weight: 400;
+    background-color: var(--p-secondary-500);
+    font-family: serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale
 }

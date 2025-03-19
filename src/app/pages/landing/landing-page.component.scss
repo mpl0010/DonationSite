@@ -1,8 +1,12 @@
 .landing-page-container {
-    display: flex;
-    flex-direction: row;
+    display: inline-flex;
+    flex-wrap: wrap;
     margin: 50px 0;
     justify-content: space-around;
+}
+
+.container-flex-direction {
+    flex-direction: row;
 }
 
 .our-goal {
@@ -15,9 +19,18 @@
 
 p {
     font-size: 1.25rem;
-    line-height: 1.75rem;
 }
 
-div {
-    color: var(--p-neutral-950);
+@media screen and (max-width: 800px) {
+    .container-flex-direction {
+        flex-direction: column;
+    }
+    .our-goal {
+        width: 100%;
+        margin: 0 50px 25px;
+    }
+    .daily-featured {
+        width: 100%;
+        margin: 0 50px 25px;
+    }
 }
