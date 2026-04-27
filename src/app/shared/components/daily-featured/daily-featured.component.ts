@@ -5,7 +5,7 @@ import { CardModule } from 'primeng/card';
 import { CarouselModule } from 'primeng/carousel'
 
 @Component({
-    selector: 'daily-featured',
+    selector: 'app-daily-featured',
     imports: [CardModule, CarouselModule],
     templateUrl: './daily-featured.component.html',
     styleUrl: './daily-featured.component.scss',
